@@ -1,0 +1,7 @@
+{
+  "name": "fintask-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
