@@ -11,5 +11,5 @@ import { useAuthStore } from '@/store/authStore';
 const authStore = useAuthStore();
 
 // Инициализируем аутентификацию при загрузке приложения
-authStore.initializeAuth();
+// authStore.initializeAuth();
 </script>

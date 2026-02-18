@@ -18,20 +18,10 @@
             <ion-list>
               <ion-item>
                 <ion-input
-                  v-model="form.firstName"
+                  v-model="form.username"
                   label="First Name"
                   label-placement="stacked"
-                  placeholder="Enter your first name"
-                  :disabled="authStore.isLoading"
-                ></ion-input>
-              </ion-item>
-
-              <ion-item>
-                <ion-input
-                  v-model="form.lastName"
-                  label="Last Name"
-                  label-placement="stacked"
-                  placeholder="Enter your last name"
+                  placeholder="Enter your username"
                   :disabled="authStore.isLoading"
                 ></ion-input>
               </ion-item>
@@ -117,16 +107,14 @@ const authStore = useAuthStore();
 const router = useRouter();
 
 const form = ref({
-  firstName: '',
-  lastName: '',
+  username: '',
   email: '',
   password: ''
 });
 
 const isFormValid = computed(() => {
   return (
-    form.value.firstName &&
-    form.value.lastName &&
+    form.value.username &&
     form.value.email &&
     form.value.password &&
     form.value.password.length >= 6
@@ -135,8 +123,9 @@ const isFormValid = computed(() => {
 
 const handleRegister = async () => {
   try {
+    console.log(11);
     await authStore.register(form.value);
-    await router.push('/home');
+    await router.push('/dash');
   } catch (error) {
     // Error handled in store
   }

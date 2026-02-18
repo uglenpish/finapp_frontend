@@ -78,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed} from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/store/authStore';
 import {
@@ -116,7 +116,7 @@ const isFormValid = computed(() => {
 const handleLogin = async () => {
   try {
     await authStore.login(form.value);
-    await router.push('/home');
+    await router.push('/dash');
   } catch (error) {
     // Error handled in store
   }

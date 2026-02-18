@@ -20,9 +20,27 @@ const routes: Array<RouteRecordRaw> = [
     meta: { requestGuest: true}
   },
   { 
+    path: '/dash',
+    name: 'dash',
+    component: () => import('@/views/DashboardPage.vue'),
+    meta: { requiresAuth: true }
+  }, 
+  { 
     path: '/home',
     name: 'home',
     component: () => import('@/views/HomePage.vue'),
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/categories',
+    name: 'categories',
+    component: () => import('@/views/CategoriesPage.vue'),
+    meta: { requiresAuth: true }
+  },
+  { 
+    path: '/transactions',
+    name: 'transactions',
+    component: () => import('@/views/TransactionsPage.vue'),
     meta: { requiresAuth: true }
   }, 
 
@@ -36,14 +54,14 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const authStore = useAuthStore();
 
-  if (!authStore.user) {
-    authStore.initializeAuth();
-  }
+  // if (!authStore.user) {
+  //   authStore.initializeAuth();
+  // }
 
-  if (to.meta.requiresAuth && !authStore.isAutchenticated) {
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
     next('/login')
-  } else if (to.meta.requiresGuest && authStore.isAutchenticated) {
-    next('/home');
+  } else if (to.meta.requiresGuest && authStore.isAuthenticated) {
+    next('/dash');
   } else {
     next()
   }
